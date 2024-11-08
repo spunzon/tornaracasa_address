@@ -2,7 +2,7 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2AuthorizationCodeBearer
-from .routers import address
+from .routers import address, forms
 from .database import Base, engine
 
 if os.getenv("ENV") == "development":
@@ -31,7 +31,7 @@ app.add_middleware(
 )
 
 app.include_router(address.router)
-
+app.include_router(forms.router)
 
 @app.get("/")
 def read_root():
