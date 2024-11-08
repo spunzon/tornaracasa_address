@@ -6,8 +6,8 @@ from fastapi.responses import RedirectResponse, Response
 from shapely.geometry import Point, Polygon
 
 router = APIRouter(
-    prefix="/validation",
-    tags=["validation"],
+    prefix="/address",
+    tags=["address"],
     responses={404: {"description": "No encontrado"}}
 )
 
@@ -22,7 +22,6 @@ async def validate_coordinates(latitude: float, longitude: float):
     Valida que las coordenadas proporcionadas estén dentro de un polígono determinado.
     """
     try:
-        # Definir el polígono complejo (por ejemplo, un polígono con múltiples vertices)
         polygon_coordinates = [
             (-30.0, 10.0),
             (-25.0, 15.0),
