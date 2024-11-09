@@ -14,7 +14,7 @@ class User(SQLModel, table=True):
     phone: str = Field(max_length=25, nullable=True)
     email: Optional[str] = Field(default=None, nullable=False)
     state: Optional[str] = Field(default=None)
-    document: Optional[str] = Field(default=None)
+    document: Optional[str] = Field(nullable=False)
 
     orders: list["Order"] = Relationship(back_populates="user")
 
