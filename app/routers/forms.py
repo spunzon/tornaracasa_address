@@ -3,7 +3,7 @@ from ..pydantic_models import FormRequest
 from ..database import engine, User, Item, Order
 from fastapi import Depends
 from sqlalchemy.orm import Session
-from typing import Annotated
+from typing import Annotated, List
 router = APIRouter(
     prefix="/forms",
     tags=["forms"],
@@ -52,3 +52,9 @@ async def order(form: FormRequest, db: SessionDep):
     db.commit()
 
     return {"message": "Pedido guardado exitosamente"}
+
+@router.get("/items", response_model=List[Item])
+async def get_items(db: SessionDep):
+    """Obtener todos los items."""
+    items = db.query(Item).all()
+    return items
