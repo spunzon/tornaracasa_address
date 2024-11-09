@@ -15,6 +15,7 @@ sqlmodel = "^0.0.22"
 python-dotenv = "^1.0.1"
 shapely = "^2.0.6"
 psycopg2-binary = "^2.9.10"
+openai = "^1.54.3"
 
 
 [build-system]
