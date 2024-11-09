@@ -36,8 +36,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(address)
-app.include_router(forms)
+app.include_router(address.router)
+app.include_router(forms.router)
 
 @app.get("/")
 def read_root():

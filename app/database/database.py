@@ -8,8 +8,8 @@ DATABASE_URL = os.getenv("DATABASE_URL")  # Por ejemplo: postgres://user:passwor
 
 sql_url = DATABASE_URL
 
-connect_args = {"check_same_thread": False}
-engine = create_engine(sql_url, connect_args=connect_args)
+# connect_args = {"check_same_thread": False}
+engine = create_engine(sql_url)
 
 def create_db_and_tables():
     SQLModel.metadata.create_all(engine)

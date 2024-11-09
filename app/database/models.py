@@ -32,9 +32,9 @@ class Order(SQLModel, table=True):
     item_id: int = Field(foreign_key="items.id", primary_key=True)
     quantity: int
 
-    # Definimos las relaciones usando sa_relationship
-    user: User = Relationship(back_populates="orders", sa_relationship_kwargs={"ondelete": "CASCADE", "onupdate": "CASCADE"})
-    item: Item = Relationship(back_populates="orders", sa_relationship_kwargs={"ondelete": "CASCADE", "onupdate": "CASCADE"})
+    # Definimos las relaciones
+    user: User = Relationship(back_populates="orders")
+    item: Item = Relationship(back_populates="orders")
 
 class FormPetition(SQLModel):
     id: int | None = Field(default=None, primary_key=True)

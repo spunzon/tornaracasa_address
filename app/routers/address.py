@@ -1,8 +1,4 @@
 from fastapi import APIRouter, HTTPException, Depends, Request
-import os
-from sqlalchemy.orm import Session
-from ..database import SessionLocal, engine, User, Base, InvitationCode
-from fastapi.responses import RedirectResponse, Response
 from shapely.geometry import Point, Polygon
 
 router = APIRouter(
