@@ -17,12 +17,12 @@ def get_session():
 
 SessionDep = Annotated[Session, Depends(get_session)]
 
-@router.post("/form")
-async def form(form: FormRequest, db: SessionDep):
+@router.post("/order")
+async def order(form: FormRequest, db: SessionDep):
     """Save a form."""
 
     # Verificar si el usuario ya existe por teléfono
-    existing_user = db.query(User).filter(User.phone == form.phone).first()
+    existing_user = db.query(User).filter(User.email == form.email).first()
 
     if existing_user:
         # Verificar items ya pedidos
