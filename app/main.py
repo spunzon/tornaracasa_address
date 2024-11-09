@@ -2,9 +2,9 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2AuthorizationCodeBearer
-from .routers import address, forms
-from .database import create_db_and_tables
 from contextlib import asynccontextmanager
+from .database import create_db_and_tables
+from .routers import address, forms
 
 if os.getenv("ENV") == "development":
     from dotenv import load_dotenv
@@ -36,8 +36,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(address.router)
-app.include_router(forms.router)
+app.include_router(address)
+app.include_router(forms)
 
 @app.get("/")
 def read_root():

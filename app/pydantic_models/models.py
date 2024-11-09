@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic_models import BaseModel
 from typing import Optional, List, Dict
 
 class FormRequest(BaseModel):
