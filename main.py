@@ -3,18 +3,24 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2AuthorizationCodeBearer
 from .routers import address, forms
-from .database import Base, engine
+from .database import create_db_and_tables
+from contextlib import asynccontextmanager
 
 if os.getenv("ENV") == "development":
     from dotenv import load_dotenv
     load_dotenv()
 
-Base.metadata.create_all(bind=engine)
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    create_db_and_tables()
+    yield
+
 
 app = FastAPI(
     title="Tornar a casa Address Validation API",
     description="Address validation API for people affected by Dana Valencia",
-    version="0.1.0"
+    version="0.1.0",
+    lifespan=lifespan
 )
 
 origins = [
