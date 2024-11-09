@@ -13,7 +13,6 @@ class User(SQLModel, table=True):
     address: str = Field(max_length=255)
     phone: str = Field(max_length=25)
     email: Optional[str] = Field(default=None)
-    password: str = Field(max_length=255)
     state: Optional[str] = Field(default=None)
     document: Optional[str] = Field(default=None)
 

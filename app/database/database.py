@@ -1,15 +1,19 @@
 import os
 from dotenv import load_dotenv
-from sqlmodel import create_engine, select, SQLModel
+from sqlmodel import create_engine, SQLModel
 
 load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL")  # Por ejemplo: postgres://user:password@localhost/dbname
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-sql_url = DATABASE_URL
-
-# connect_args = {"check_same_thread": False}
-engine = create_engine(sql_url)
+# Configurar el engine con los parámetros específicos para psycopg2
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,
+    connect_args={
+        "options": "-c timezone=utc"
+    }
+)
 
 def create_db_and_tables():
     SQLModel.metadata.create_all(engine)
