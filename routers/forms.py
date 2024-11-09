@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from ..pydantic.models import FormRequest
-from ..database import engine
+from ..database import engine, Form
 from fastapi import Depends
 from sqlalchemy.orm import Session
 from typing import Annotated
@@ -24,5 +24,6 @@ async def form(form: FormRequest, db: SessionDep):
     new_form = Form(name=form.name, address=form.address, phone=form.phone, items=form.items)
     db.add(new_form)
     db.commit()
+    db.refresh(new_form)
 
     return {"message": "Form saved"}
