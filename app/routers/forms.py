@@ -22,7 +22,7 @@ async def order(form: FormRequest, db: SessionDep):
     """Save a form."""
 
     # Verificar si el usuario ya existe por teléfono
-    existing_user = db.query(User).filter(User.email == form.email).first()
+    existing_user = db.query(User).filter(User.email == form.email.lower()).first()
 
     if existing_user:
         return {"message": "Usuario ya existe"}
@@ -33,7 +33,7 @@ async def order(form: FormRequest, db: SessionDep):
             name=form.name,
             address=form.address,
             phone=form.phone,
-            email=form.email,
+            email=form.email.lower(),
             state=form.state,
             document=form.document
         )
