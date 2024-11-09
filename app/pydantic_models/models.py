@@ -6,6 +6,6 @@ class FormRequest(BaseModel):
     phone : str
     state : str
     email : str
-    address : str
+    address : Optional[str] = None
     items : List[str]
     document : str

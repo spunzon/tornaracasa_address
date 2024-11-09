@@ -9,10 +9,10 @@ class User(SQLModel, table=True):
     __tablename__ = "users"
 
     id: Optional[int] = Field(default=None, primary_key=True)
-    name: str = Field(max_length=255)
-    address: str = Field(max_length=255)
-    phone: str = Field(max_length=25)
-    email: Optional[str] = Field(default=None)
+    name: str = Field(max_length=255, nullable=False)
+    address: str = Field(max_length=255, nullable=True)
+    phone: str = Field(max_length=25, nullable=True)
+    email: Optional[str] = Field(default=None, nullable=False)
     state: Optional[str] = Field(default=None)
     document: Optional[str] = Field(default=None)
 
